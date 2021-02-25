@@ -6,7 +6,9 @@
             <div class="header-body text-center mt-7 mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome to Argon Dashboard FREE Laravel Live Preview.') }}</h1>
+                        <h1 class="text-white">{{ __('Welcome to AutoFormular.') }}</h1>
+                        <h2 class="text-white">{{ __('Leave the worries of completing tens of forms in our duty!') }}</h1>
+                        <h2 class="text-white">{{ __(' Up the productivity!') }}</h1>
                     </div>
                 </div>
             </div>

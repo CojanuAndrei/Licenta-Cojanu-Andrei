@@ -19,14 +19,20 @@ Route::get('/', function () {
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
+Route::view('/test', 'auth/verify');
+
+Route::view('create-account', function () {return view('auth/email_confirmation');});
+Route::view('insert-business', function () {return view('auth/business_credetial');});
+
+
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
-	 Route::get('map', function () {return view('pages.maps');})->name('map');
-	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
-	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
+	Route::get('map', function () {return view('pages.maps');})->name('map');
+	Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
+	Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 

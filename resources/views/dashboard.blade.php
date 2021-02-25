@@ -65,9 +65,9 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Page visits</h3>
+                                 <h3 class="mb-0">Page visits</h3>
                             </div>
-                            <div class="col text-right">
+                           <div class="col text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>

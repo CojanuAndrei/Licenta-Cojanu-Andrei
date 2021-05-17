@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
+            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+            'port' => env('MAIL_PORT', 2525),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('MAIL_USERNAME','d48fe4d42db439'),
+            'password' => env('MAIL_PASSWORD','c49ea8bc48af60'),
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -50,7 +50,7 @@ return [
         ],
 
         'mailgun' => [
-            'transport' => 'mailgun',
+            'transport' => 'smtp',
         ],
 
         'postmark' => [
@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'auto@formular.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 

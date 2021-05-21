@@ -1,14 +1,13 @@
 @extends('layouts.app', ['class' => 'bg-default'])
 
 @section('content')
-
     <div class="header bg-gradient-primary py-7 py-lg-8">
         <div class="container">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                            <h1 class="text-white">{{ __('Contul tau este verificat.') }}</h1>
-                            <h2 class="text-white">{{ __('Vrei sa completezi datele firmei pentru a facilita procesul de generare al ') }}</h2>
+                            <h1 class="text-white">{{ __('Your email is verified.') }}</h1>
+                            <h2 class="text-white">{{ __('Do you want to complete your business credentials so you can start generate your forms straight throught? ') }}</h2>
                             <h2 class="text-white">{{ __('') }}</h2>
                         </div>
                 </div>

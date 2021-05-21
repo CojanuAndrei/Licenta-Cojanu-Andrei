@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
 
 class Firma
 {
@@ -18,11 +17,8 @@ class Firma
      */
     protected $fillable = [
         'nume_firma',
-        'id_user',
-        'nume_admin',
         'adresa_firma',
         'email_firma',
-        'telefon',
         'cod_fiscal',
         'numar_inregistrare',
         'data_inregistrare',

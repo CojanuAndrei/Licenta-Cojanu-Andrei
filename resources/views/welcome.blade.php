@@ -6,9 +6,9 @@
             <div class="header-body text-center mt-7 mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Bine ai venit pe AutoFormular.') }}</h1>
-                        <h2 class="text-white">{{ __('Lasa grijile completarii zecilor de formulare in grija noastra!') }}</h2>
-                        <h2 class="text-white">{{ __(' Hai sa crestem productivitatea!') }}</h2>
+                        <h1 class="text-white">{{ __('Welcome to AutoFormular.') }}</h1>
+                        <h2 class="text-white">{{ __('Leave the worries of completing tens of forms in our duty!') }}</h1>
+                        <h2 class="text-white">{{ __(' Up the productivity!') }}</h1>
                     </div>
                 </div>
             </div>

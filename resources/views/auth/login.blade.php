@@ -7,11 +7,18 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-header bg-transparent pb-5">
-                        <div class="text-muted text-center mt-2 mb-3"><huge>{{ __('We are happy to have you already registered!') }}</huge></div>
-                        
+                    <div class="card-header bg-transparent pb-3">
+                        <div class="text-muted text-center mt-2 mb-2"><huge>{{ __('Ne bucuram sa fi alaturi de noi!') }}</huge></div>
+                        <div class="flash-message">
+                            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                @if(Session::has('alert-' . $msg))
+                                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
+                        
                         <div class="text-center text-muted mb-4">
                             <small>
                                     Sign in with your credentials:

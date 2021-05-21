@@ -1,16 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards')
-    
+@include('users.partials.header', [
+    'title' => __('Buna ziua,') . ' '. auth()->user()->name.'!',
+    'description' => __('Aici puteti vedea licitatiile la care participa firma'),
+    'class' => 'col-lg-7'
+])   
     <div class="container-fluid mt--7">
-        <div class="flash-message">
-            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                @if(Session::has('alert-' . $msg))
-                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-                @endif
-            @endforeach
-        </div>
+        
         <div class=" mt-5">
             <div class="mb-5 mb-xl-0">
                 <div class="card shadow">
@@ -18,6 +15,21 @@
                         <div class="row align-items-center">
                             <div class="col">
                                  <h3 class="mb-0">Licitatii</h3>
+                            </div>
+                           <div class="col text-right">
+                                <div class="input-group mb-1">
+                                    <input type="text" class="form-control border-primary col-12 " placeholder="Scrie aici..." aria-label="search">
+                                    <select class="form-control border-primary col-4" data-toggle="select" data-minimum-results-for-search="Infinity">
+                                        <option>Nume licitatie</option>
+                                        <option>Beneficiar</option>
+                                        <option>Adresa</option>
+                                        <option>E-mail</option>
+                                        <option>Status</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">Cauta</button>
+                                    </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -140,72 +152,110 @@
                                     </td>
                                     
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class=" mt-5">
-            <div class="mb-5 mb-xl-0">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                 <h3 class="mb-0">Imputerniciti</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Nume imputernicit</th>
-                                    <th scope="col">E-mail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     <th scope="row">
-                                        Imputernicit1
+                                        Licitatie6
                                     </th>
                                     <td>
-                                        email1
+                                        Beneficiar6
+                                    </td>
+                                    <td>
+                                        adresa6
+                                    </td>
+                                    <td>
+                                        email6
+                                    </td>
+                                    <td>
+                                        <i class="ni ni-check-bold text-success mr-3"></i> Completed
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
                                     </td>
                                     
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        Imputernicit2
+                                        Licitatie7
                                     </th>
                                     <td>
-                                        email2
+                                        Beneficiar7
                                     </td>
+                                    <td>
+                                        adresa7
+                                    </td>
+                                    <td>
+                                        email7
+                                    </td>
+                                    <td>
+                                        <i class="ni ni-fat-remove text-red mr-3"></i> Neinceput
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        Imputernicit3
+                                        Licitatie8
                                     </th>
                                     <td>
-                                        email3
+                                        Beneficiar8
                                     </td>
+                                    <td>
+                                        adresa8
+                                    </td>
+                                    <td>
+                                        email8
+                                    </td>
+                                    <td>
+                                        <i class="ni ni-fat-remove text-red mr-3"></i> Neinceput
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        Imputernicit4
+                                        Licitatie9
                                     </th>
                                     <td>
-                                        email4
+                                        Beneficiar9
                                     </td>
+                                    <td>
+                                        adresa9
+                                    </td>
+                                    <td>
+                                        email9
+                                    </td>
+                                    <td>
+                                        <i class="ni ni-fat-delete text-blue mr-3"></i> Incomplet
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        Imputernicit5
+                                        Licitatie10
                                     </th>
                                     <td>
-                                        email5
+                                        Beneficiar10
                                     </td>
+                                    <td>
+                                        adresa10
+                                    </td>
+                                    <td>
+                                        email10
+                                    </td>
+                                    <td>
+                                        <i class="ni ni-fat-delete text-blue mr-3"></i> Incomplet
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                    </td>
+                                    
                                 </tr>
                             </tbody>
                         </table>
@@ -217,3 +267,8 @@
         @include('layouts.footers.auth')
     </div>
 @endsection
+
+@push('js')
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+@endpush

@@ -8,7 +8,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
                             <h1 class="text-white">{{ __('Contul tau este verificat.') }}</h1>
-                            <h2 class="text-white">{{ __('Vrei sa completezi datele firmei pentru a facilita procesul de generare al ') }}</h2>
+                            <h2 class="text-white">{{ __('Trebuie sa completezi datele firmei pentru a facilita procesul de generare al formularelor.') }}</h2>
                             <h2 class="text-white">{{ __('') }}</h2>
                         </div>
                 </div>
@@ -26,14 +26,10 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
-                        <form role="form" method="POST" action="{{ route('insert-business') }}">
+                        <form role="form" method="GET" action="{{ route('login') }}">
                             @csrf
-                        <div class="text-muted text-center mt-2 mb-3"><huge>{{ __('Choose  here:') }}</huge></div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-4">{{ __('Yes!') }}</button>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-4">{{ __('No! I\'m just an employee...') }}</button>
+                                <button type="submit" class="btn btn-primary mt-4">{{ __('Ok!') }}</button>
                             </div>
                         </form>
                     </div>

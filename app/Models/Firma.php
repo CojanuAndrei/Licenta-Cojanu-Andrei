@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class Firma
+class Firma extends Model
 {
-    use HasFactory, Notifiable;
-
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
@@ -49,4 +46,5 @@ class Firma
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

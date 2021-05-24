@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/email_confirmation',  function () {return view('auth/email_confirmation');})->name('email_confirmation');
+
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/about', 'App\Http\Controllers\HomeController@index')->name('about');
 
@@ -25,10 +27,10 @@ Route::get('/g_about',  function () {return view('about');})->name('g_about');
 
 
 Route::view('/test', 'profile/edit_firma');
-Route::view('/test1', 'auth/business_credential');
 
 Route::view('create-account', function () {return view('auth/email_confirmation');});
-Route::view('insert-business', function () {return view('auth/business_credetial');});
+Route::view('/insert-business', function () {return view('auth/business_credential');})->name('insert_business');
+Route::get('/log-in', 'App\Http\Controllers\HomeController@index')->name('log-in');
 
 
 Route::group(['middleware' => 'auth'], function () {

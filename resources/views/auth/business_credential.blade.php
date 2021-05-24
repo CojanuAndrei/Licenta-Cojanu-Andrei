@@ -26,7 +26,7 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
-                    <form role="form" method="POST" action="{{ route('register') }}">
+                        <form role="form" method="POST" action="{{ route('dashboard') }}">
                             @csrf
                             <!--business name-->
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -34,7 +34,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-briefcase-24"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nume firma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nume firma') }}" type="text" name="nume_firma" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -48,7 +48,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-building"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Adresa firma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Adresa firma') }}" type="text" name="adresa_firma" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -62,7 +62,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Telefon firma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Telefon firma') }}" type="text" name="telefon" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -76,7 +76,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('E-mail firma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('E-mail firma') }}" type="text" name="email_firma" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -90,7 +90,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cod fiscal') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cod fiscal') }}" type="text" name="cod_fiscal" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -104,7 +104,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Numar de inregistrare') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Numar de inregistrare') }}" type="text" name="numar_inregistrare" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -118,7 +118,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Data inregistrarii') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Data inregistrarii') }}" type="text" name="data_inregistrare" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -132,7 +132,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-archive-2"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Incadrare legala') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Incadrare legala') }}" type="text" name="incadrare_legala" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -146,7 +146,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-tag"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nume administrator') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nume administrator') }}" type="text" name="nume_administrator" value="{{ old('name') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -163,9 +163,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
                                     
-                                    <input class="border-right form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  placeholder="{{ __('An precedent') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
-                                    <input class="pl-1 border-right form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cu 2 ani in urma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
-                                    <input class="pl-1 form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cu 3 ani in urma') }}" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input class="border-right form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  placeholder="{{ __('An precedent') }}" type="text" name="cf_1" value="{{ old('name') }}" required autofocus>
+                                    <input class="pl-1 border-right form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cu 2 ani in urma') }}" type="text" name="cf_2" value="{{ old('name') }}" required autofocus>
+                                    <input class="pl-1 form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Cu 3 ani in urma') }}" type="text" name="cf_3" value="{{ old('name') }}" required autofocus>
                                     </div>
                                 </div>
                                 @if ($errors->has('name'))

@@ -90,11 +90,8 @@ class RegisterController extends Controller
             $user->is_verified = 1;
             $user->email_verified_at=time();
             $user->save();
-            $firma=new Firma();
-            $firma->id_uesr=$user->id;
-            $firma->save();
-            return redirect()->route('email_confirmation')->with(session()->flash('alert-success', 'Contul tau este verificat.'));
+            return redirect()->route('login')->with(session()->flash('alert-success', 'Contul tau este verificat.'));
         }
-        return redirect()->route('login')->with(session()->flash('alert-danger', 'Code de verificare invalid!'));
+        return redirect()->route('login')->with(session()->flash('alert-danger', 'Cod de verificare invalid!'));
     }
 }

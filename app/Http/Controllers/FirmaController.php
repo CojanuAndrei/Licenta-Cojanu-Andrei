@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Firma;
+use Illuminate\Support\Facades\Auth;
 
 class FirmaController extends Controller
 {
@@ -12,8 +13,9 @@ class FirmaController extends Controller
     public function register(Request $request)
     {
         $firma=new Firma();
+        $firma->id_user=Auth::user()->id; 
         $firma->nume_firma=$request->nume_firma;
-        $firma->nume_admin=$request->nume_admin;
+        $firma->nume_admin=$request->nume_administrator;
         $firma->adresa_firma=$request->adresa_firma;
         $firma->email_firma=$request->email_firma;
         $firma->telefon=$request->telefon;
@@ -27,9 +29,10 @@ class FirmaController extends Controller
         $firma->save();
         if($firma !=null)
         {
-            return redirect()->route('dashboard')->with(session()->flash('alert-success', 'Datele firmei au fost salvate.'));
+            return view('dashboard')->with(session()->flash('alert-success', 'Datele firmei au fost salvate.'));
         }
-        return redirect()->route('dashboard')->with(session()->flash('alert-danger', 'A intervenit o problema!Datele firmei nu au fost salvate!'));
+        return view('dashboard')->with(session()->flash('alert-danger', 'A intervenit o problema!Datele firmei nu au fost salvate!'));
     
     }
+
 }

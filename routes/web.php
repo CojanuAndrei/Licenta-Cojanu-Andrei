@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,22 +25,25 @@ Route::get('/about', 'App\Http\Controllers\HomeController@index')->name('about')
 
 Route::get('/g_home',  function () {return view('welcome');})->name('g_home');
 Route::get('/g_about',  function () {return view('about');})->name('g_about');
+Route::get('/ajutor',  function () {return view('ajutor');})->name('ajutor');
+Route::get('/suport',  function () {return view('suport');})->name('suport');
 
 
-Route::view('/test', 'profile/edit_firma');
+Route::view('/test', 'auth/business_credential');
 
 Route::view('create-account', function () {return view('auth/email_confirmation');});
-Route::view('/insert-business', function () {return view('auth/business_credential');})->name('insert_business');
+Route::view('/insert-business','auth/business_credential')->name("insert-business");
 Route::get('/log-in', 'App\Http\Controllers\HomeController@index')->name('log-in');
 
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+	Route::get('profile_user_edit', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+	Route::put('profile_user', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	
-	Route::get('profile_firma', ['as' => 'profile.edit_firma', 'uses' => 'App\Http\Controllers\ProfileController@edit_firma']);
+	Route::get('profile_firma_edit', ['as' => 'profile.edit_firma', 'uses' => 'App\Http\Controllers\ProfileController@edit_firma']);
 	Route::put('profile_firma', ['as' => 'profile.update_firma', 'uses' => 'App\Http\Controllers\ProfileController@update_firma']);
+	Route::post('save_firma', ['as' => 'profile.save_firma', 'uses' => 'App\Http\Controllers\FirmaController@register']);
 	
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
 	Route::get('map', function () {return view('pages.maps');})->name('map');
@@ -52,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('add_licitatie', function () {return view('add/add_licitatie');})->name('add_licitatie');
 	Route::get('add_imputernicit', function () {return view('add/add_imputernicit');})->name('add_imputernicit');
 	
+
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 

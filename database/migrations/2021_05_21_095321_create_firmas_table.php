@@ -22,8 +22,8 @@ class CreateFirmasTable extends Migration
             $table->string('telefon');
             $table->integer('cod_fiscal')->unique();
             $table->integer('numar_inregistrare')->unique();
-            $table->timestamp('data_inregistrare');
-            $table->integer('incadrare_legala');
+            $table->date('data_inregistrare');
+            $table->string('incadrare_legala');
             $table->double('cf_1');
             $table->double('cf_2');
             $table->double('cf_3');

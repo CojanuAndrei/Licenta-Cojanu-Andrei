@@ -115,12 +115,12 @@
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://argon-dashboard-laravel.creative-tim.com/docs/getting-started/overview.html">
+                    <a class="nav-link" href="{{route("suport")}}">
                         <i class="ni ni-email-83 text-red"></i> Contact suport
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://argon-dashboard-laravel.creative-tim.com/docs/foundation/colors.html">
+                    <a class="nav-link" href="{{route("ajutor")}}">
                         <i class="ni ni-support-16 text-red"></i> Ajutor
                     </a>
                 </li>

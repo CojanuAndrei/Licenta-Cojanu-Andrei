@@ -20,7 +20,7 @@ class CreateFirmasTable extends Migration
             $table->string('nume_admin');
             $table->string('adresa_firma');
             $table->string('telefon');
-            $table->integer('cod_fiscal')->unique();
+            $table->string('cod_fiscal')->unique();
             $table->integer('numar_inregistrare')->unique();
             $table->date('data_inregistrare');
             $table->string('incadrare_legala');

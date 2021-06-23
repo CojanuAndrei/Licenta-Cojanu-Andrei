@@ -102,7 +102,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("add_imputernicit")}}">
+                    <a class="nav-link" href="{{route("adauga_imputernicit")}}">
                         <i class="ni ni-fat-add"></i> Adauga imputerniciti
                     </a>
                 </li>

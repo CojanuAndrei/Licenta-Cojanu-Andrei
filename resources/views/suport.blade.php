@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                         <div class=" ">
-                            <div class="text-black">{{ __('Daca ati observat vreo problema in functionarea aplicatiti sau doriti sa propuneti noi facilitati o puteti face scriindu-mi un email la adresa:') }}</div>
+                            <div class="text-black">{{ __('Daca ati observat vreo problema in functionarea aplicatiei sau doriti sa propuneti noi facilitati o puteti face scriindu-mi un email la adresa:') }}</div>
                             <br>
                             <div class="text-black">{{ __('contact@andreicojanu.ro') }}</div>
                         </div>

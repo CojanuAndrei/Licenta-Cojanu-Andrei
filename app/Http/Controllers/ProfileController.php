@@ -24,7 +24,11 @@ class ProfileController extends Controller
     }
     public function edit_firma()
     {
-        return view('profile.edit_firma');
+        if(auth()->user()->id_firma!=null)
+        {
+            return view("dashboard")->with(session()->flash('alert-danger', 'Nu aveti voie sa modificati datele firmei dintr-un cont de imputernicit!'));
+        }
+        return view("profile/edit_firma");
     }
 
     /**
@@ -58,7 +62,7 @@ class ProfileController extends Controller
         $firma_cf_3=$request->cf_3;
         DB::table('Firmas')->where('id_user',auth()->user()->id)->update(['nume_firma'=>$firma_nume_firma,'nume_admin'=>$firma_nume_admin,'adresa_firma'=>$firma_adresa_firma,'email_firma'=>$firma_email_firma,'telefon'=>$firma_telefon,'cod_fiscal'=>$firma_cod_fiscal,'numar_inregistrare'=>$firma_numar_inregistrare,'data_inregistrare'=>$firma_data_inregistrare,'incadrare_legala'=>$firma_incadrare_legala,'cf_1'=>$firma_cf_1,'cf_2'=>$firma_cf_2,'cf_3'=>$firma_cf_3]);
         
-        return back()->withStatus(__('Datele firmei actualizat!'));
+        return back()->withStatus(__('Datele firmei au fost actualizate!'));
 
     }
 

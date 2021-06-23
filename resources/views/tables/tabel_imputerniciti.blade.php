@@ -40,47 +40,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        Imputernicit1
-                                    </th>
-                                    <td>
-                                        email1
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Imputernicit2
-                                    </th>
-                                    <td>
-                                        email2
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Imputernicit3
-                                    </th>
-                                    <td>
-                                        email3
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Imputernicit4
-                                    </th>
-                                    <td>
-                                        email4
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        Imputernicit5
-                                    </th>
-                                    <td>
-                                        email5
-                                    </td>
-                                </tr>
+                                @foreach ($imps as $row)
+                                    <tr>
+                                        <td scope="row">
+                                            {{$row->name}}
+                                        </td>
+                                        <td>
+                                            {{$row->email}}
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

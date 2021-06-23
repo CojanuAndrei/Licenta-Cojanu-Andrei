@@ -6,6 +6,7 @@ use App\Models\Firma;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
@@ -27,11 +28,19 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
         $id = Auth::user()->id;
-        Log::info('Showing the user profile for user: '.$id);
-        if(Firma::where('id_user','=',$id)->exists())
+        if(Firma::where('id_user','=',$id)->exists() || Auth::user()->id_firma!=null)
         {
-            return view('dashboard');
+            if(auth()->user()->id_firma!=null)
+            {
+                $imps=DB::table('users')->where('id_firma',auth()->user()->id_firma)->get();
+
+                return view("dashboard",['imps'=>$imps]);
+            }
+            $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');
+            $imps=DB::table('users')->where('id_firma',$subq)->get();
+            return view('dashboard',['imps'=>$imps]);
         }
         return redirect('insert-business');
     }

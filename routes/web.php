@@ -51,10 +51,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	
 	Route::get('tabel_licitatii', function () {return view('tables/tabel_licitatii');})->name('tabel_licitatii');
-	Route::get('tabel_imputerniciti', function () {return view('tables/tabel_imputerniciti');})->name('tabel_imputerniciti');
+	Route::get('tabel_imputerniciti',['as' => 'tabel_imputerniciti', 'uses' => 'App\Http\Controllers\ImputernicitController@afisImpTable']);
 	
-	Route::get('add_licitatie', function () {return view('add/add_licitatie');})->name('add_licitatie');
-	Route::get('add_imputernicit', function () {return view('add/add_imputernicit');})->name('add_imputernicit');
+	Route::get('add_licitatie', ['as' => 'add_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@addLicitatie']);
+	Route::post('incarc_licitatie', ['as' => 'incarc_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@incarcLicitatie']);
+	Route::put('verifica_licitatie', ['as' => 'verifica_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@verifLicitatie']);
+	Route::put('verifica_lot', ['as' => 'verifica_lot', 'uses' => 'App\Http\Controllers\LicitatieController@verifLot']);
+	Route::get('tabel_licitatii',['as' => 'tabel_licitatii', 'uses' => 'App\Http\Controllers\LicitatieController@afisTabelLicitatii']);
+	
+
+	Route::get('adauga_imputernicit', ['as' => 'adauga_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@verifImpAddImp']);
+	#Route::get('adauga_imputernicit', function () {return view('add/add_imputernicit');})->name('adauga_imputernicit');
+	Route::post('adaugat_imputernicit', ['as' => 'adaugat_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@register']);
 	
 
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

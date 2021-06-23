@@ -3,7 +3,7 @@
 @section('content')
 @include('users.partials.header', [
     'title' => __('Buna ziua,') . ' '. auth()->user()->name.'!',
-    'description' => __('Adauga licitatia incarcand fisa de date'),
+    'description' => __('Adauga licitatia incarcand fisa de date si punandu-i un nume pentru a o gasi mai usor.'),
     'class' => 'col-lg-7'
 ])   
     <div class="container-fluid mt--7">
@@ -17,10 +17,17 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="" autocomplete="off">
+                        <form method="post" action="{{route('incarc_licitatie')}}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
-                            @method('put')
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    </ul>
+                                 </div>
+                             @endif
                             <h6 class="heading-small text-muted mb-4">{{ __('Informatii licitatie') }}</h6>
                             
                             @if (session('status'))
@@ -35,17 +42,18 @@
 
                             <div class="pl-lg-4">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-name">{{ __('Nume licitatie') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control" required autofocus>
+                                    <label class="form-control-label" for="nume_lic">{{ __('Nume personalizat') }}</label>
+                                    <input type="text" name="nume_personalizat" id="nume_lic" class="form-control" required autofocus>
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-email">{{ __('Fisa de date') }}</label>
-                                    <div class="dropzone dropzone-single" data-toggle="dropzone" data-dropzone-url="http://">
+                                    <label class="form-control-label" for="dropzone">{{ __('Fisa de date') }}</label>
+                                                
+                                    
+                                    <div class="dropzone dropzone-single" data-toggle="dropzone" >
                                         <div class="fallback">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="dropzoneBasicUpload">
-                                                <label class="custom-file-label" for="dropzoneBasicUpload">Incarca fisierul...</label>
+                                                <input type="file" class="form-control" name="dropzone" id="dropzone">
                                             </div>
                                         </div>
                                     

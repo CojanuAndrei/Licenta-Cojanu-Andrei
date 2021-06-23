@@ -3,7 +3,7 @@
 @section('content')
 @include('users.partials.header', [
     'title' => __('Buna ziua,') . ' '. auth()->user()->name.'!',
-    'description' => __('Adauga licitatia incarcand fisa de date'),
+    'description' => __('Adauga imputerniciti si acestia vor primi un e-mail de verificare.'),
     'class' => 'col-lg-7'
 ])   
     <div class="container-fluid mt--7">
@@ -17,9 +17,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="" autocomplete="off">
+                        <form method="post" action="{{route('adaugat_imputernicit')}}" autocomplete="off">
                             @csrf
-                            @method('put')
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Informatii imputernicit') }}</h6>
                             
@@ -36,12 +35,12 @@
                             <div class="pl-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-name">{{ __('Nume imputernicit') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control" required autofocus>
+                                    <input type="text" name="nume" id="nume" class="form-control" required autofocus>
 
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">{{ __('E-mail') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control" required autofocus>
+                                    <input type="text" name="email" id="email" class="form-control" required autofocus>
 
                                 </div>
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">

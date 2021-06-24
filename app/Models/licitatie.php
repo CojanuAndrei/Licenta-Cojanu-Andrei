@@ -20,7 +20,7 @@ class licitatie extends Model
         'nume_personalizat',
         'fisa_date',
         'file_path',
-        'nume_licitatie',
+        'beneficiar',
         'cod_fiscal',
         'adresa',
         'localitate',

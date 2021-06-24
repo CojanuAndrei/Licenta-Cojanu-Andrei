@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('icons') }}">
+                    <a class="nav-link" href="{{ route('alegere_licitatie') }}">
                         <i class="ni ni-delivery-fast text-blue"></i> {{ __('Genereaza formulare') }}
                     </a>
                 </li>

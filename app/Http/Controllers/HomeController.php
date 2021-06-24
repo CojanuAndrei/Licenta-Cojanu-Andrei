@@ -35,12 +35,19 @@ class HomeController extends Controller
             if(auth()->user()->id_firma!=null)
             {
                 $imps=DB::table('users')->where('id_firma',auth()->user()->id_firma)->get();
-
-                return view("dashboard",['imps'=>$imps]);
+                $licitatii=DB::table('licitaties')->where('id_firma',auth()->user()->id_firma)->get();
+                
+                return view("dashboard",['imps'=>$imps,'licitatii'=>$licitatii]);
             }
             $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');
             $imps=DB::table('users')->where('id_firma',$subq)->get();
-            return view('dashboard',['imps'=>$imps]);
+            $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');//proprietar
+            if($subq==null)//fara datele firmei complete
+            {
+                return redirect('insert-business');
+            }
+            $licitatii=DB::table('licitaties')->where('id_firma',$subq)->get();
+            return view('dashboard',['imps'=>$imps,'licitatii'=>$licitatii]);
         }
         return redirect('insert-business');
     }

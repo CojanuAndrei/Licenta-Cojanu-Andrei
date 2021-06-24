@@ -41,8 +41,8 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="nume_licitatie">{{ __('Nume licitatie') }}</label>
-                                    <input type="text" name="nume_licitatie" id="nume_licitatie" class="form-control" value="{{ $licitatie->nume_licitatie }}" required autofocus>
+                                    <label class="form-control-label" for="beneficiar">{{ __('Nume licitatie') }}</label>
+                                    <input type="text" name="beneficiar" id="beneficiar" class="form-control" value="{{ $licitatie->beneficiar }}" required autofocus>
                                 </div>
                                 
                                 <div class="form-group">

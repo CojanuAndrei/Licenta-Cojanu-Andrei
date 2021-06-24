@@ -26,7 +26,7 @@ class ProfileController extends Controller
     {
         if(auth()->user()->id_firma!=null)
         {
-            return view("dashboard")->with(session()->flash('alert-danger', 'Nu aveti voie sa modificati datele firmei dintr-un cont de imputernicit!'));
+            return redirect("home")->with(session()->flash('alert-danger', 'Nu aveti voie sa modificati datele firmei dintr-un cont de imputernicit!'));
         }
         return view("profile/edit_firma");
     }

@@ -19,6 +19,9 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="public\argon\css\print.css" media="print">
+        <!-- Tyni MCE -->
+        <script src="https://cdn.tiny.cloud/1/qsk9buucadewwrmyrfa07cnfjc8ddi4kyb8lw0xwszr24blo/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()

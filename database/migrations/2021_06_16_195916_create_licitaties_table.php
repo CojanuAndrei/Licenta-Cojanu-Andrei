@@ -18,7 +18,7 @@ class CreateLicitatiesTable extends Migration
             $table->integer('id_user');
             $table->integer('id_firma');
             $table->string('nume_personalizat');
-            $table->string('nume_licitatie');
+            $table->string('beneficiar');
             $table->string('fisa_date');
             $table->string('file_path');
             $table->string('autoritate_contractanta');
@@ -35,7 +35,7 @@ class CreateLicitatiesTable extends Migration
             $table->string('titlu')->nullable();
             $table->string('tip_contract')->nullable();
             $table->string('descriere_succinta')->nullable();
-            $table->double('valoare_totala_ftva')->nullable();
+            $table->string('valoare_totala_ftva')->nullable();
             $table->string('moneda')->nullable();
             $table->integer('informatii_suplimentare')->nullable();
             $table->integer('nr_loturi')->nullable();

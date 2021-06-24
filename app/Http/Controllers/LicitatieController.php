@@ -168,7 +168,7 @@ class LicitatieController extends Controller
             $text=$pdf->getText();
             $text = iconv("UTF-8", "ASCII//TRANSLIT//IGNORE", $text);
             $text=LicitatieController::em($text);
-            $licitatie->nume_licitatie=trim(LicitatieController::extractText("Denumire si adrese","Cod de",$text));
+            $licitatie->beneficiar=trim(LicitatieController::extractText("Denumire si adrese","Cod de",$text));
             $licitatie->cod_fiscal=trim(LicitatieController::extractText("Cod de identificare fiscala:",";",$text));
             $licitatie->adresa=trim(LicitatieController::extractText("Adresa:", ";",$text));
             $licitatie->localitate=trim(LicitatieController::extractText("Localitate:",";",$text));
@@ -204,7 +204,7 @@ class LicitatieController extends Controller
     {
         $id_lic=$request->id_lic;
         $nume_personalizat=$request->nume_personalizat;
-        $nume_licitatie=$request->nume_licitatie;
+        $beneficiar=$request->beneficiar;
         $cod_fiscal=$request->cod_fiscal;
         $adresa=$request->adresa;
         $localitate=$request->localitate;
@@ -223,7 +223,7 @@ class LicitatieController extends Controller
         $informatii_suplimentare=$request->informatii_suplimentare;
         $nr_loturi=$request->nr_loturi;
         DB::table('licitaties')->where('id',$id_lic)
-        ->update(['nume_licitatie'=>$nume_licitatie,'cod_fiscal'=>$cod_fiscal
+        ->update(['beneficiar'=>$beneficiar,'cod_fiscal'=>$cod_fiscal
         ,'adresa'=>$adresa,'localitate'=>$localitate,'cod_postal'=>$cod_postal
         ,'tara'=>$tara,'cod_nuts'=>$cod_nuts,'email'=>$email
         ,'telefon'=>$telefon,'fax'=>$fax,'persoana_contact'=>$persoana_contact
@@ -274,7 +274,7 @@ class LicitatieController extends Controller
         $lista_loturi[]=$lot;
         #dd($lista_loturi);
         $lot->save();
-        return view("add.verificare_loturi",['lista_loturi'=>$lista_loturi,'nume_lic'=>$licitatie[0]->nume_licitatie,'id_lic'=>$licitatie[0]->id]);
+        return view("add.verificare_loturi",['lista_loturi'=>$lista_loturi,'nume_lic'=>$licitatie[0]->beneficiar,'id_lic'=>$licitatie[0]->id]);
     }
     public function verifLot(Request $request)
     {
@@ -317,5 +317,52 @@ class LicitatieController extends Controller
         $licitatii=DB::table('licitaties')->where('id_firma',$subq)->get();
         
         return view("tables/tabel_licitatii",['licitatii'=>$licitatii]);
+    }
+    public function veziDetalii(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        
+        return view("tables.vezi_detalii",['licitatie'=>$licitatie]);
+    }
+    public function editaLicitatie(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        return view("profile.edit_licitatie",['licitatie'=>$licitatie]);
+    }
+    public function editareLicitatie(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        $nume_personalizat=$request->nume_personalizat;
+        $beneficiar=$request->beneficiar;
+        $cod_fiscal=$request->cod_fiscal;
+        $adresa=$request->adresa;
+        $localitate=$request->localitate;
+        $cod_postal=$request->cod_postal;
+        $tara=$request->tara;
+        $cod_nuts=$request->cod_nuts;
+        $email=$request->email;
+        $telefon=$request->telefon;
+        $fax=$request->fax;
+        $persoana_contact=$request->persoana_contact;
+        $titlu=$request->titlu;
+        $tip_contract=$request->tip_contract;
+        $descriere_succinta=$request->descriere_succinta;
+        $valoare_totala_ftva=$request->valoare_totala_ftva;
+        $moneda=$request->moneda;
+        $informatii_suplimentare=$request->informatii_suplimentare;
+        $nr_loturi=$request->nr_loturi;
+        DB::table('licitaties')->where('id',$id_lic)
+        ->update(['beneficiar'=>$beneficiar,'cod_fiscal'=>$cod_fiscal
+        ,'adresa'=>$adresa,'localitate'=>$localitate,'cod_postal'=>$cod_postal
+        ,'tara'=>$tara,'cod_nuts'=>$cod_nuts,'email'=>$email
+        ,'telefon'=>$telefon,'fax'=>$fax,'persoana_contact'=>$persoana_contact
+        ,'titlu'=>$titlu,'tip_contract'=>$tip_contract,'descriere_succinta'=>$descriere_succinta
+        ,'valoare_totala_ftva'=>$valoare_totala_ftva,'moneda'=>$moneda,
+        'informatii_suplimentare'=>$informatii_suplimentare,'nr_loturi'=>$nr_loturi]);
+        
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        return view("tables.vezi_detalii",['licitatie'=>$licitatie]);
     }
 }

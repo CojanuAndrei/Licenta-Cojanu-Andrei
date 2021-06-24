@@ -52,7 +52,7 @@
                                             {{$licitatie->nume_personalizat}}
                                         </td>
                                         <td>
-                                            {{$licitatie->nume_licitatie}}
+                                            {{$licitatie->beneficiar}}
                                         </td>
                                         <td>
                                             {{$licitatie->adresa}},{{$licitatie->localitate}},{{$licitatie->tara}}
@@ -61,7 +61,11 @@
                                             {{$licitatie->email}}, {{$licitatie->persoana_contact}}, {{$licitatie->telefon}}
                                         </td>
                                         <td>
-                                            <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                            <form  method="get" action="{{route('vezi_detalii')}}">
+                                                @csrf
+                                                <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie->id}}">
+                                                <button type="submit" class="btn btn-info p-1">{{ __('Vezi detalii') }}</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

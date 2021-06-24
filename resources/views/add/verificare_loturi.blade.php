@@ -35,8 +35,8 @@
                             <div class="pl-lg-4">
                             
                                 <div class="form-group">
-                                    <label class="form-control-label" for="nume_licitatie">{{ __('Nume licitatie') }}</label>
-                                    <input type="text" name="nume_licitatie" id="nume_licitatie" class="form-control" value="{{$nume_lic}}" readonly>
+                                    <label class="form-control-label" for="beneficiar">{{ __('Nume licitatie') }}</label>
+                                    <input type="text" name="beneficiar" id="beneficiar" class="form-control" value="{{$nume_lic}}" readonly>
                                 </div>
                                 <input type="hidden" name="id_lic" id="id_lic" value={{$id_lic}}>
                                     

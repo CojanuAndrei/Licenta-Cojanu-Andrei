@@ -113,6 +113,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="form-control-label" for="titlu">{{ __('Numar referinta') }}</label>
+                                    <input type="text" name="numar_referinta" id="numar_referinta" class="form-control" value="{{ $licitatie->numar_referinta }}" required autofocus>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="form-control-label" for="tip_contract">{{ __('Tip contract') }}</label>
                                     <input type="text" name="tip_contract" id="tip_contract" class="form-control" value="{{ $licitatie->tip_contract }}" required autofocus>
                                 </div>

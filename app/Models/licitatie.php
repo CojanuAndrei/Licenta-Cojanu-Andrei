@@ -21,6 +21,7 @@ class licitatie extends Model
         'fisa_date',
         'file_path',
         'beneficiar',
+        'numar_referinta',
         'cod_fiscal',
         'adresa',
         'localitate',

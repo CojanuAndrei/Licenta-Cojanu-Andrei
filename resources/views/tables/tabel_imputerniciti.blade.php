@@ -22,6 +22,7 @@
                                     <select class="form-control border-primary col-4" data-toggle="select" data-minimum-results-for-search="Infinity">
                                         <option>Nume imputernicit</option>
                                         <option>E-mail</option>
+                                    
                                     </select>
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="button" id="button-addon2">Cauta</button>
@@ -37,6 +38,8 @@
                                 <tr>
                                     <th scope="col">Nume imputernicit</th>
                                     <th scope="col">E-mail</th>
+                                    <th scope="col"></th>
+                                
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,7 +51,13 @@
                                         <td>
                                             {{$row->email}}
                                         </td>
-
+                                        <td>
+                                            <form  method="get" action="{{route('vezi_detalii')}}">
+                                                @csrf
+                                                <input type="hidden" id="id_imp" name="id_imp" value="{{$row->id}}">
+                                                <button type="submit" class="btn btn-info p-1">{{ __('Sterge') }}</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 

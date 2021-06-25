@@ -140,6 +140,7 @@ class LicitatieController extends Controller
         }
         return view("add.add_licitatie");
     }
+    
     //incarcLicitatie
     public function incarcLicitatie(Request $request)
     {
@@ -180,7 +181,8 @@ class LicitatieController extends Controller
             $licitatie->fax=trim(LicitatieController::extractText("Fax:",";",$text));
             $licitatie->persoana_contact=trim(LicitatieController::extractText("contact:",";",$text));
 
-            $licitatie->titlu=trim(LicitatieController::extractText("Titlu:","II.1.2",$text));
+            $licitatie->titlu=trim(LicitatieController::extractText("Titlu:\n\n","\n",$text));
+            $licitatie->numar_referinta=trim(LicitatieController::extractText("Numar de referinta atribuit dosarului de autoritatea contractanta: ","\n",$text));
             $licitatie->tip_contract=trim(LicitatieController::extractText("Tip de contract:","II.1.4",$text));
             $licitatie->descriere_succinta=trim(LicitatieController::extractText("Descrierea succinta a contractului sau a achizitiei/achizitiilor","II.1.5",$text));
             $licitatie->valoare_totala_ftva=trim(LicitatieController::extractText("Valoarea estimata fara TVA :",";",$text));
@@ -216,6 +218,7 @@ class LicitatieController extends Controller
         $fax=$request->fax;
         $persoana_contact=$request->persoana_contact;
         $titlu=$request->titlu;
+        $numar_referinta=$request->numar_referinta;
         $tip_contract=$request->tip_contract;
         $descriere_succinta=$request->descriere_succinta;
         $valoare_totala_ftva=$request->valoare_totala_ftva;
@@ -227,7 +230,7 @@ class LicitatieController extends Controller
         ,'adresa'=>$adresa,'localitate'=>$localitate,'cod_postal'=>$cod_postal
         ,'tara'=>$tara,'cod_nuts'=>$cod_nuts,'email'=>$email
         ,'telefon'=>$telefon,'fax'=>$fax,'persoana_contact'=>$persoana_contact
-        ,'titlu'=>$titlu,'tip_contract'=>$tip_contract,'descriere_succinta'=>$descriere_succinta
+        ,'titlu'=>$titlu,'numar_referinta'=>$numar_referinta,'tip_contract'=>$tip_contract,'descriere_succinta'=>$descriere_succinta
         ,'valoare_totala_ftva'=>$valoare_totala_ftva,'moneda'=>$moneda,
         'informatii_suplimentare'=>$informatii_suplimentare,'nr_loturi'=>$nr_loturi]);
         

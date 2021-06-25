@@ -10,8 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class FirmaController extends Controller
 {
     //
+    
+
     public function register(Request $request)
     {
+        
+        
+        $this->validate($request, [
+            'dublaVerificare' => 'accepted',
+            'termeniConditii' => 'accepted',
+        ]);
+    
+        //dd($request);
         $firma=new Firma();
         $firma->id_user=Auth::user()->id; 
         $firma->nume_firma=$request->nume_firma;
@@ -29,9 +39,9 @@ class FirmaController extends Controller
         $firma->save();
         if($firma !=null)
         {
-            return view('dashboard')->with(session()->flash('alert-success', 'Datele firmei au fost salvate.'));
+            return redirect("home")->with(session()->flash('alert-success', 'Datele firmei au fost salvate.'));
         }
-        return view('dashboard')->with(session()->flash('alert-danger', 'A intervenit o problema!Datele firmei nu au fost salvate!'));
+        return redirect("home")->with(session()->flash('alert-danger', 'A intervenit o problema!Datele firmei nu au fost salvate!'));
     
     }
 

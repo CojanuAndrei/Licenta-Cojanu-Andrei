@@ -16,11 +16,11 @@ class CreateLotsTable extends Migration
         Schema::create('lots', function (Blueprint $table) {
             $table->id();
             $table->integer('id_licitatie');
-            $table->string('denumire_lot');
-            $table->string('descriere_achizitie');
-            $table->string('criteriu_atribuire');
-            $table->string('info_variante');
-            $table->string('durata_contract');
+            $table->text('denumire_lot');
+            $table->text('descriere_achizitie');
+            $table->text('criteriu_atribuire');
+            $table->text('info_variante');
+            $table->text('durata_contract');
             $table->double('valoare_totala_ftva');
             $table->string('valoare_garantie_ftva');
             $table->timestamps();

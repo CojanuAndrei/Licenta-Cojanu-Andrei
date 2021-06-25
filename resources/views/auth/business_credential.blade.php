@@ -26,8 +26,25 @@
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
+                        
                         <form role="form" method="POST" action="{{ route('profile.save_firma') }}">
                             @csrf
+                            <div class="flash-message">
+                                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                    @if(Session::has('alert-' . $msg))
+                                        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                                    @endif
+                                @endforeach
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+                            </div>
                             <!--business name-->
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <div class="text-body">
@@ -210,20 +227,30 @@
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
+                                        <input class="custom-control-input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="dublaVerificare" id="dublaVerificare" type="checkbox">
+                                        <label class="custom-control-label" for="dublaVerificare">
                                             <span class="text-muted">{{ __('Am verificat, inca o data, ca datele introduse sunt corecte.') }}</span>
                                         </label>
+                                        @if ($errors->has('name'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                        <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('Sunt de acord cu ') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
+                                        <input class="custom-control-input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="termeniConditii" id="termeniConditii" type="checkbox">
+                                        <label class="custom-control-label" for="termeniConditii">
+                                            <span class="text-muted">{{ __('Sunt de acord cu ') }} <a href="#!">{{ __('Termenii si Conditiile') }}</a></span>
                                         </label>
+                                        @if ($errors->has('name'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

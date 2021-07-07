@@ -368,4 +368,91 @@ class LicitatieController extends Controller
         $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
         return view("tables.vezi_detalii",['licitatie'=>$licitatie]);
     }
+    public function stergeLicitatie(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        
+        DB::table('lots')->where('id_licitatie','=',$id_lic)->delete();
+        DB::table('licitaties')->delete($id_lic);
+
+        return redirect("tabel_licitatii");
+    }
+    public function veziLoturiLicitatie(Request $request)
+    {
+        $nr_lot=$request->numar_lot;
+        $id_lic=$request->id_lic;
+        $id_lot=$request->id_lot;
+        if($nr_lot>0)
+        {
+            
+            $loturi=DB::table('lots')->where('id_licitatie',$id_lic)->get();
+            $loturi=DB::table('lots')->where('id',$loturi[0]->id+$nr_lot-1)->get();
+            $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+            $toate_loturile=0;
+            return view("tables.vezi_loturi",['licitatie'=>$licitatie,'loturi'=>$loturi,'toate_loturile'=>$toate_loturile]);
+    
+        }
+        $loturi=DB::table('lots')->where('id_licitatie',$id_lic)->get();
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        $toate_loturile=1;
+        return view("tables.vezi_loturi",['licitatie'=>$licitatie,'loturi'=>$loturi,'toate_loturile'=>$toate_loturile]);
+    }
+    public function editareLoturi(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        $id_lot=$request->id_lot;
+        $nr_lot=$request->numar_lot1;
+        $loturi=DB::table('lots')->where('id',$id_lot)->get();
+        
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        return view("profile.editare_loturi",['licitatie'=>$licitatie,'lot'=>$loturi,'nr_lot'=>$nr_lot]);
+    }
+    public function editatLoturi(Request $request)
+    {
+        $id_lic=$request->id_lic;
+        $id_lot=$request->id_lot;
+        
+        $denumire_lot=$request->denumire_lot;
+        $descriere_achizitie=$request->descriere_achizitie;
+        $criteriu_atribuire=$request->criteriu_atribuire;
+        $info_variante=$request->info_variante;
+        $durata_contract=$request->durata_contract;
+        $valoare_totala_ftva=$request->valoare_totala_ftva;
+        $valoare_garantie_ftva=$request->valoare_garantie_ftva;
+
+        DB::table('lots')->where('id',$id_lot)
+        ->update(['denumire_lot'=>$denumire_lot,'descriere_achizitie'=>$descriere_achizitie
+        ,'criteriu_atribuire'=>$criteriu_atribuire,'info_variante'=>$info_variante
+        ,'durata_contract'=>$durata_contract,'valoare_totala_ftva'=>$valoare_totala_ftva
+        ,'valoare_garantie_ftva'=>$valoare_garantie_ftva]);
+
+        $loturi=DB::table('lots')->where('id_licitatie',$id_lic)->get();
+        $licitatie=DB::table('licitaties')->where('id',$id_lic)->get();
+        $toate_loturile=1;
+        return view("tables.vezi_loturi",['licitatie'=>$licitatie,'loturi'=>$loturi,'toate_loturile'=>$toate_loturile]);
+    }
+    public function cautaLicitatie(Request $request)
+    {
+        $cautare_text=trim($request->cautare_text);
+        $cautare_atribut=$request->cautare_atribut;
+        if(auth()->user()->id_firma!=null)//imputernicit
+        {
+            if($cautare_text==null)
+            {
+                $licitatii=DB::table('licitaties')->where('id_firma',auth()->user()->id_firma)->get();
+                return view("tables/tabel_licitatii",['licitatii'=>$licitatii]);
+            }
+            $licitatii=DB::table('licitaties')->where('id_firma',auth()->user()->id_firma)->where($cautare_atribut,'LIKE','%'.$cautare_text.'%')->get();
+            return view("tables/tabel_licitatii",['licitatii'=>$licitatii]);
+        }
+        $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');//proprietar
+        if($cautare_text==null)
+            {
+                $licitatii=DB::table('licitaties')->where('id_firma',$subq)->get();
+                return view("tables/tabel_licitatii",['licitatii'=>$licitatii]);
+            }
+        $licitatii=DB::table('licitaties')->where('id_firma',$subq)->where($cautare_atribut,'LIKE','%'.$cautare_text.'%')->get();
+        
+        return view("tables/tabel_licitatii",['licitatii'=>$licitatii]);
+    }
 }

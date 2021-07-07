@@ -17,18 +17,24 @@
                                  <h3 class="mb-0">Licitatii</h3>
                             </div>
                            <div class="col text-right">
-                                <div class="input-group mb-1">
-                                    <input type="text" class="form-control border-primary col-12 " placeholder="Scrie aici..." aria-label="search">
-                                    <select class="form-control border-primary col-4" data-toggle="select" data-minimum-results-for-search="Infinity">
-                                        <option>Nume licitatie</option>
-                                        <option>Beneficiar</option>
-                                        <option>Adresa</option>
-                                        <option>E-mail</option>
-                                        <option>Status</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">Cauta</button>
-                                    </div>
+                                <div class="mb-1">
+                                    <form class="row"  method="get" action="{{route('cauta_licitatie_formulare')}}">
+                                        @csrf
+                                        <input type="text" class="form-control border-primary col-6 " id="cautare_text" name="cautare_text" placeholder="Scrie aici..." aria-label="search">
+                                        <select class="form-control border-primary col-4" id="cautare_atribut" name="cautare_atribut" data-toggle="select" data-minimum-results-for-search="Infinity">
+                                            <option id="nume_personalizat" name="nume_personalizat" value="nume_personalizat">Nume licitatie</option>
+                                            <option id="beneficiar" name="beneficiar" value="beneficiar">Beneficiar</option>
+                                            <option id="adresa" name="adresa" value="adresa">Adresa</option>
+                                            <option id="localitate" name="localitate" value="localitate">Localitate</option>
+                                            <option id="tara" name="tara" value="tara">Tara</option>
+                                            <option id="persoana_contact" name="persoana_contact" value="persoana_contact">Persoana de contact</option>
+                                            <option id="email" name="email" value="email">E-mail</option>
+                                            <option id="telefon" name="telefon" value="telefon">Telefon</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Cauta</button>
+                                        </div>
+                                    </form>
                               </div>
                             </div>
                         </div>
@@ -41,11 +47,18 @@
                                     <th scope="col">Nume licitatie</th>
                                     <th scope="col">Beneficiar</th>
                                     <th scope="col">Adresa</th>
-                                    <th scope="col">Contact</th>
+                                    <th scope="col">Informatii de contact</th>
                                     <th scope="col"> </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($licitatii->isEmpty())
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            Nu s-a gasit nicio licitatie!
+                                        </td>
+                                    </tr>
+                                @else
                                 @foreach ($licitatii as $licitatie)
                                     <tr>
                                         <td scope="row">
@@ -69,6 +82,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

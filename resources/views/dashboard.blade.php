@@ -33,12 +33,14 @@
                                     <th scope="col">Nume licitatie</th>
                                     <th scope="col">Beneficiar</th>
                                     <th scope="col">Adresa</th>
-                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Informatii de contact</th>
                                     <th scope="col">Detalii</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($licitatii as $licitatie)
+                                    
                                     <tr>
                                         <td scope="row">
                                             {{$licitatie->nume_personalizat}}
@@ -60,6 +62,9 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @if ($loop->index == 4)
+                                        @break
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -97,6 +102,9 @@
                                         </td>
 
                                     </tr>
+                                    @if ($loop->index == 4)
+                                        @break
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

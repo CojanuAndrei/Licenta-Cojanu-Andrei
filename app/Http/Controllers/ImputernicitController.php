@@ -52,11 +52,12 @@ class ImputernicitController extends Controller
     }
     public function afisImpTable(Request $request)
     {
+        $user_id_firma=auth()->user()->id_firma;
         if(auth()->user()->id_firma!=null)
         {
             $imps=DB::table('users')->where('id_firma',auth()->user()->id_firma)->get();
             
-            return view("tables/tabel_imputerniciti",['imps'=>$imps]);
+            return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
         }
         $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');
         if($subq==null)
@@ -64,7 +65,42 @@ class ImputernicitController extends Controller
             return redirect('insert-business');
         }
         $imps=DB::table('users')->where('id_firma',$subq)->get();
+        return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
+    }
+    public function stergeImputernicit(Request $request)
+    {
+        $id_imp=$request->id_imp;
+        DB::table('users')->where("id","=",$id_imp)->delete();
+        return redirect("tabel_imputerniciti");
+    }
+    public function cautaImputernicit(Request $request)
+    {
+        $user_id_firma=auth()->user()->id_firma;
+        $cautare_text=trim($request->cautare_text);
+        $cautare_atribut=$request->cautare_atribut;
+        $id_imp=$request->id_imp;
+        if(auth()->user()->id_firma!=null)
+        {
+            if($cautare_text==null)
+            {
+                $imps=DB::table('users')->where('id_firma',auth()->user()->id_firma)->get();
+                
+                return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
+            }
+
+            $imps=DB::table('users')->where('id_firma',auth()->user()->id_firma )->where($cautare_atribut,'LIKE','%'.$cautare_text.'%')->get();
+            
+            return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
+        }
         
-        return view("tables/tabel_imputerniciti",['imps'=>$imps]);
+        $subq=DB::table('firmas')->select('id')->where('id_user',auth()->user()->id)->value('id');
+        if($cautare_text==null)
+        {
+            $imps=DB::table('users')->where('id_firma',$subq)->get();
+            return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
+        }
+        $imps=DB::table('users')->where('id_firma',$subq)->where($cautare_atribut,'LIKE','%'.$cautare_text.'%')->get();
+        #dd($imps);
+        return view("tables/tabel_imputerniciti",['imps'=>$imps,'user_id_firma'=>$user_id_firma]);
     }
 }

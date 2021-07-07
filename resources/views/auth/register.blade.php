@@ -17,6 +17,22 @@
                     <div class="text-center text-muted mb-4">
                         <small>{{ __('Sign up yours credentials') }}</small>
                     </div>
+                    <div class="flash-message">
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+                                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                            @endif
+                        @endforeach
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                     <form role="form" method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -73,17 +89,13 @@
                                     name="password_confirmation" required>
                             </div>
                         </div>
-                        <div class="text-muted font-italic">
-                            <small>{{ __('password strength') }}: <span
-                                    class="text-success font-weight-700">{{ __('strong') }}</span></small>
-                        </div>
+                        
                         <div class="row my-4">
                             <div class="col-12">
                                 <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                    <label class="custom-control-label" for="customCheckRegister">
-                                        <span class="text-muted">{{ __('I agree with the') }} <a
-                                                href="#!">{{ __('Privacy Policy') }}</a></span>
+                                    <input class="custom-control-input" id="procesarea_datelor" name="procesarea_datelor" type="checkbox">
+                                    <label class="custom-control-label" for="procesarea_datelor">
+                                        <span class="text-muted">{{ __('Sunt de acord cu procesarea datelor') }} </span>
                                     </label>
                                 </div>
                             </div>

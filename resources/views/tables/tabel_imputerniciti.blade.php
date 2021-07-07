@@ -14,19 +14,22 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                 <h3 class="mb-0">Licitatii</h3>
+                                 <h3 class="mb-0">Imputerniciti</h3>
                             </div>
                            <div class="col text-right">
-                                <div class="input-group mb-1">
-                                    <input type="text" class="form-control border-primary col-12 " placeholder="Scrie aici..." aria-label="search">
-                                    <select class="form-control border-primary col-4" data-toggle="select" data-minimum-results-for-search="Infinity">
-                                        <option>Nume imputernicit</option>
-                                        <option>E-mail</option>
-                                    
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">Cauta</button>
-                                    </div>
+                                <div class="mb-1">
+                                    <form class="row"  method="get" action="{{route('cauta_imputernicit')}}">
+                                        @csrf
+                                        <input type="text" class="form-control border-primary col-6 " id="cautare_text" name="cautare_text" placeholder="Scrie aici..." aria-label="search">
+                                        <select class="form-control border-primary col-4" id="cautare_atribut" name="cautare_atribut" data-toggle="select" data-minimum-results-for-search="Infinity">
+                                            <option id="name" name="name" value="name">Nume imputernicit</option>
+                                            <option id="email" name="email" value="email">E-mail</option>
+                                        
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Cauta</button>
+                                        </div>
+                                    </form>
                               </div>
                             </div>
                         </div>
@@ -43,24 +46,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($imps as $row)
+                                @if ($imps->isEmpty())
                                     <tr>
-                                        <td scope="row">
-                                            {{$row->name}}
-                                        </td>
-                                        <td>
-                                            {{$row->email}}
-                                        </td>
-                                        <td>
-                                            <form  method="get" action="{{route('vezi_detalii')}}">
-                                                @csrf
-                                                <input type="hidden" id="id_imp" name="id_imp" value="{{$row->id}}">
-                                                <button type="submit" class="btn btn-info p-1">{{ __('Sterge') }}</button>
-                                            </form>
+                                        <td colspan="3" class="text-center">
+                                            Nu s-a gasit niciun imputernicit!
                                         </td>
                                     </tr>
-                                @endforeach
-                                
+                                @else
+                                    @foreach ($imps as $row)
+                                        <tr>
+                                            <td scope="row">
+                                                {{$row->name}}
+                                            </td>
+                                            <td>
+                                                {{$row->email}}
+                                            </td>
+
+                                            <td>
+                                                @if($user_id_firma==null)
+                                                    <form  method="post" action="{{route('sterge_imputernicit')}}">
+                                                    @csrf
+                                                    <input type="hidden" id="id_imp" name="id_imp" value="{{$row->id}}">
+                                                    <button type="submit" class="btn btn-info p-1">{{ __('Sterge') }}</button>
+                                                    </form>
+                                                @endif
+                                                
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

@@ -56,6 +56,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'procesarea_datelor' => 'accepted',
+            
         ]);
     }
 
@@ -67,6 +69,8 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+        $this->validator($request->all())->validate();
+
         $user= new User();
         $user->name=$request->name;
         $user->email=$request->email;

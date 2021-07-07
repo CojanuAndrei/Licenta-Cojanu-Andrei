@@ -13,14 +13,24 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
-                            <div class="col">
-                                 <h3 class="mb-0">{{$licitatie[0]->nume_personalizat}}</h3>
+                            <div class="col-9">
+                                 <h3 class="mb-0">Licitatia {{$licitatie[0]->nume_personalizat}}</h3>
                             </div>
-                            <form  method="post" action="{{route('edita_licitatie')}}">
+                            <form  class="col" method="get" action="{{route('vezi_loturi_licitatie')}}">
+                                @csrf
+                                <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie[0]->id}}">
+                                <button type="submit" class="btn btn-info p-2">{{ __('Vezi loturile') }}</button>
+                            </form>
+                            <form  class="col" method="post" action="{{route('edita_licitatie')}}">
                                 @csrf
                                 @method("put")
                                 <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie[0]->id}}">
-                                <button type="submit" class="btn btn-info p-1">{{ __('Editare') }}</button>
+                                <button type="submit" class="btn btn-info p-2">{{ __('Editare') }}</button>
+                            </form>
+                            <form class="col"  method="post"  action="{{route('sterge_licitatie')}}">
+                                @csrf
+                                <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie[0]->id}}">
+                                <button type="submit" onclick="return confirm('Sunteti sigur ca vreti sa stergeti licitatia?');" class="btn btn-info p-2  ">{{ __('Sterge') }}</button>
                             </form>
                             
                         </div>

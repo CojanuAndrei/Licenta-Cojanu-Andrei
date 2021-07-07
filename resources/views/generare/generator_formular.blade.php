@@ -13,7 +13,7 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
-                            <h3 class="mb-0">{{ __('Adaugare licitatie') }}</h3>
+                            <h3 class="mb-0">{{ __('Editare formular') }}</h3>
                         </div>
                     </div>
                     <div class="card-body">
@@ -28,7 +28,7 @@
                                     </ul>
                                  </div>
                              @endif
-                            <h6 class="heading-small text-muted mb-4">{{ __('Informatii licitatie') }}</h6>
+                            <h6 class="heading-small text-muted mb-4">{{ __('Formular') }}</h6>
                             
                             @if (session('status'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">

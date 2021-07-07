@@ -62,20 +62,29 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('vezi_detalii',['as' => 'vezi_detalii', 'uses' => 'App\Http\Controllers\LicitatieController@veziDetalii']);
 	Route::put('edita_licitatie', ['as' => 'edita_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@editaLicitatie']);
 	Route::post('editare_licitatie', ['as' => 'editare_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@editareLicitatie']);
+	Route::post('sterge_licitatie',['as' => 'sterge_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@stergeLicitatie']);
+	Route::get('vezi_loturi_licitatie',['as' => 'vezi_loturi_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@veziLoturiLicitatie']);
+	Route::post('editare_loturi', ['as' => 'editare_loturi', 'uses' => 'App\Http\Controllers\LicitatieController@editareLoturi']);
+	Route::post('editat_loturi', ['as' => 'editat_loturi', 'uses' => 'App\Http\Controllers\LicitatieController@editatLoturi']);
+	Route::get('cauta_licitatie', ['as' => 'cauta_licitatie', 'uses' => 'App\Http\Controllers\LicitatieController@cautaLicitatie']);
 	
 
 	//generare formulare
 	Route::get('alegere_licitatie',['as' => 'alegere_licitatie', 'uses' => 'App\Http\Controllers\FormularController@alegereLicitatie']);
+	Route::get('cauta_licitatie_formulare',['as' => 'cauta_licitatie_formulare', 'uses' => 'App\Http\Controllers\FormularController@cauta_licitatie_formulare']);
 	Route::post('ales_licitatie',['as' => 'ales_licitatie', 'uses' => 'App\Http\Controllers\FormularController@alesLicitatie']);
 	Route::post('ales_formular',['as' => 'ales_formular', 'uses' => 'App\Http\Controllers\FormularController@alesFormular']);
 	Route::post('salvez_formular',['as' => 'salvez_formular', 'uses' => 'App\Http\Controllers\FormularController@salvezFormular']);
 	
 	
-
+	
 	//adaugare tabel imputerniciti
 	Route::get('adauga_imputernicit', ['as' => 'adauga_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@verifImpAddImp']);
 	Route::post('adaugat_imputernicit', ['as' => 'adaugat_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@register']);
 	Route::get('tabel_imputerniciti',['as' => 'tabel_imputerniciti', 'uses' => 'App\Http\Controllers\ImputernicitController@afisImpTable']);
+	Route::post('sterge_imputernicit',['as' => 'sterge_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@stergeImputernicit']);
+	Route::get('cauta_imputernicit',['as' => 'cauta_imputernicit', 'uses' => 'App\Http\Controllers\ImputernicitController@cautaImputernicit']);
+	
 	
 	//schimbare parola
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

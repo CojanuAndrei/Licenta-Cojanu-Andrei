@@ -217,13 +217,18 @@
                                                 <input type="text" name="nr_loturi" id="nr_loturi" class="form-control" value="{{ $licitatie[0]->nr_loturi }}" >
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center">
+                                                <div class="text-center">
+                                                    <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie[0]->id}}">
+                                                    <button type="submit" class="btn btn-info p-1">{{ __('Salveaza') }}</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
 
                                 </tbody>
                             </table>
-                            <div class="text-center">
-                                <input type="hidden" id="id_lic" name="id_lic" value="{{$licitatie[0]->id}}">
-                                <button type="submit" class="btn btn-info p-1">{{ __('Salveaza') }}</button>
-                            </div>
                         </div>
                     </div>
                 </div>
